@@ -1,0 +1,5 @@
+mathem, inform = int(input()), int(input())
+math = set(input() for _ in range(mathem))
+inf = set(input() for _ in range(inform))
+once = len(math ^ inf)
+print(['NO', once][once > 0])
