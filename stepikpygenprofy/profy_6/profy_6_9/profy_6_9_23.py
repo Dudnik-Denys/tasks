@@ -26,9 +26,13 @@ def products_count(order: tuple) -> dict:
 
 total_count = total_sum(data)
 products = products_count(data)
+
 final_sum = f'ИТОГ: {total_count}р'
 max_len_item = len(max(products.keys(), key=len))
 
 [print(f'{item.ljust(max_len_item)} x {value}') for item, value in products.items()]
-print('-' * ((max_len_item) + 4))
+if len(final_sum) < max_len_item:
+    print('-' * (max_len_item + (4 if max(products.values()) < 10 else 5)))
+else:
+    print('-' * len(final_sum))
 print(f'ИТОГ: {total_count}р')
