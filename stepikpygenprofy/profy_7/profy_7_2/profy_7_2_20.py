@@ -8,6 +8,9 @@ blog_posts = [{'Photos': 3, 'Likes': 21, 'Comments': 2},
 total_likes = 0
 
 for post in blog_posts:
-    total_likes += post['Likes']
+    try:
+        total_likes += post['Likes']
+    except KeyError:
+        total_likes -= 1
 
 print(total_likes)
