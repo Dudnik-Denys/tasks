@@ -12,14 +12,12 @@ for category in categories:
     response = requests.get(url + category)
     response.encoding = 'utf-8'
     soup = BeautifulSoup(response.text, 'lxml')
-    print('Category parse')
     pages = (link['href'] for link in soup.select_one('div.pagen').select('a'))
     for page in pages:
         response = requests.get(url + page)
         response.encoding = 'utf-8'
         soup = BeautifulSoup(response.text, 'lxml')
         articles = [link['href'] for link in soup.select('a.name_item')]
-        print('Page parse')
         for article in articles:
             response = requests.get(url + article)
             response.encoding = 'utf-8'
@@ -27,6 +25,5 @@ for category in categories:
             price = int(soup.select_one('#price').text.split(' ')[0])
             stock = int(soup.select_one('#in_stock').text.split(':')[1])
             total += (price * stock)
-            print('Article parse')
 
 print(total)
