@@ -21,7 +21,7 @@ def get_item_data(product: BeautifulSoup, url: str, product_type: str) -> dict:
     data = {'categories': product_type,
             'name': product.select_one('#p_header').text.strip(),
             'article': product.select_one('p.article').text.split(':')[1].strip(),
-            'description': {li['id']: li.text.split(':')[1].strip() for li in
+            'description': {li['id']: li.text.split(': ')[1].strip() for li in
                             (product.select_one(f'li:nth-child({i})') for i in
                             range(1, len(product.select_one('#description').select('li')) + 1))},
             'count': product.select_one('#in_stock').text.split(':')[1].strip(),
