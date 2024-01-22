@@ -1,14 +1,17 @@
 # Здесь объявляется класс Factory
 class Factory:
-    def build_sequence(self):
+    @staticmethod
+    def build_sequence():
         return []
 
-    def build_number(self, string):
+    @staticmethod
+    def build_number(string):
         return float(string)
 
 
 class Loader:
-    def parse_format(self, string, factory):
+    @staticmethod
+    def parse_format(string, factory):
         seq = factory.build_sequence()
         for sub in string.split(","):
             item = factory.build_number(sub)
@@ -18,6 +21,4 @@ class Loader:
 
 
 # эти строчки не менять!
-ld = Loader()
-s = input()
-res = ld.parse_format(s, Factory())
+res = Loader.parse_format("1, 2, 3, -5, 10", Factory)
